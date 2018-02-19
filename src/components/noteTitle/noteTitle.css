@@ -1,0 +1,26 @@
+.NoteTitle{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 10%;
+}
+.TitleText{
+  margin-left: 5%;
+  font-weight: 600;
+  display: inline-block;
+  padding-top: 10px;
+}
+.LangButton{
+  float: right;
+  margin-right: 6%;
+  height: 40px;
+  width: 40px;
+  font-weight: 600;
+}
+
+input{
+  margin-left: 5%;
+  height: 40px;
+  width: 90%;
+}

@@ -1,0 +1,22 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: rgb(233, 233, 239);
+}
+.CreateNoteButton {
+  width: 80%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  height: 3%;
+  -ms-flex-align: stretch;
+  background-color: white;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 8%;
+}
