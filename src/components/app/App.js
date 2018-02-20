@@ -21,6 +21,7 @@ class App extends React.Component {
       noteTitle: '',
       noteText: '',
       noteKey: 0,
+      display: 1,
     //  savedNotes: [],
     };
   }
@@ -31,8 +32,8 @@ class App extends React.Component {
   }
 
   changeDisplay = (dispKey) => {
-    this.props.changeDisplay(dispKey);
-    // this.setState({ display: dispKey });
+    // this.props.changeDisplay(dispKey);
+    this.setState({ display: dispKey });
   }
 
   saveNote = () => {
@@ -44,14 +45,17 @@ class App extends React.Component {
       noteText: this.state.noteText,
     };
     this.props.saveNote(newSavedNotes);
-    this.props.changeDisplay(0);
-    this.setState({
-      noteTitle: '',
-      noteText: '',
-      charsLeft: this.state.maxChar,
-      // display: 0,
-      noteKey: newSavedNotes.length + 1,
-    });
+    // this.props.changeDisplay(0);
+    this.setState(
+      {
+        noteTitle: '',
+        noteText: '',
+        charsLeft: this.state.maxChar,
+        display: 0,
+        noteKey: newSavedNotes.length + 1,
+      },
+      this.changeDisplay(this.state.display),
+    );
   }
   saveText = (text) => {
     this.setState({ noteText: text });
@@ -63,17 +67,17 @@ class App extends React.Component {
 
   editNote = (noteKey) => {
     const noteData = this.props.savedNotes[noteKey];
-    this.props.changeDisplay(1);
+    // this.props.changeDisplay(1);
     this.setState({
       noteText: noteData.noteText,
       noteTitle: noteData.noteTitle,
       noteKey: noteData.noteKey,
-    });
+    }, this.changeDisplay(1));
   }
 
 
   render() {
-    if (this.props.display) {
+    if (this.state.display) {
       return (
         <div className="App">
           <Header
@@ -120,9 +124,8 @@ class App extends React.Component {
         noteId={note.noteKey}
         noteTitle={note.noteTitle}
         noteText={note.noteText}
-
+        editHandler={this.editNote}
       />));
-      // editHandler={this.props.editNote}
 
     return (
       <div className="App">
@@ -133,10 +136,10 @@ class App extends React.Component {
         <button
           className="CreateNoteButton"
           onClick={() => {
-            this.props.changeDisplay(1);
-          // this.setState({
-          //   display: 1,
-          // });
+            // this.props.changeDisplay(1);
+          this.setState({
+            display: 1,
+          });
         }}
         >
         Create Another Note
@@ -165,13 +168,13 @@ App.defaultProps = {
 };
 const mapStateToProps = state => ({
   savedNotes: state.savedNotes,
-  display: state.display,
+  // display: state.display,
 });
 
 const mapDispatchToProps = dispatch => ({
   saveNote: noteData => dispatch(displaySaveAction(noteData)),
-  editNote: noteData => dispatch(displayEditAction(noteData)),
-  changeDisplay: display => dispatch(switchAction(display)),
+  editNote: () => dispatch(displayEditAction()),
+//  changeDisplay: display => dispatch(switchAction(display)),
 
 });
 
