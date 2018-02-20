@@ -7,7 +7,7 @@ class SaveOptions extends Component {
     return (
       <div className="SaveOptions">
         <div>
-          <a className="SaveText" href="#save" onClick={this.props.saveNoteFunction}>{this.props.saveText}</a>
+          <button className="SaveText" onClick={this.props.saveNoteFunction}>{this.props.saveText}</button>
           <div className="CharCount">{this.props.charCount} characters left</div>
         </div>
       </div>

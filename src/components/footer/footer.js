@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './footer.css';
 
-class Footer extends Component {
+class Footer extends React.Component {
   render() {
     return (
       <div className="Footer">
-        {this.props.footerText}
+        {this.props.footer}
       </div>
     );
   }
 }
 
 Footer.defaultProps = {
-  footerText: 'About Us',
+  footer: 'About Us',
 };
 
 Footer.propTypes = {
-  footerText: PropTypes.string,
+  footer: PropTypes.string,
 };
 
 export default Footer;

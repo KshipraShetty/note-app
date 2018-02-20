@@ -5,9 +5,10 @@ import './noteHistory.css';
 
 class NoteHistory extends Component {
   startEdit = (event) => {
-    console.log(event.target);
     this.props.editHandler(event.target.id);
   }
+
+
   render() {
     return (
       <div

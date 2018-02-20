@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './noteText.css';
+import './noteBody.css';
 
 
-class NoteText extends Component {
+class NoteBody extends Component {
   handleCharCount = (event) => {
     const charCount = event.target.value.length;
     this.props.countUpdater(charCount);
@@ -29,7 +29,7 @@ class NoteText extends Component {
   }
 }
 
-NoteText.propTypes = {
+NoteBody.propTypes = {
   getCharsLeft: PropTypes.number,
   getMaxChars: PropTypes.number,
   helpText: PropTypes.string,
@@ -38,7 +38,7 @@ NoteText.propTypes = {
   noteValue: PropTypes.func,
 };
 
-NoteText.defaultProps = {
+NoteBody.defaultProps = {
   getCharsLeft: 0,
   getMaxChars: 0,
   helpText: 'Enter note below',
@@ -47,4 +47,4 @@ NoteText.defaultProps = {
   noteValue: text => text,
 };
 
-export default NoteText;
+export default NoteBody;

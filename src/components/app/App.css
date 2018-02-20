@@ -6,15 +6,11 @@
   background-color: rgb(233, 233, 239);
 }
 .CreateNoteButton {
-  width: 80%;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -ms-flex-pack: distribute;
+  flex-direction: row;
   justify-content: space-around;
   height: 3%;
-  -ms-flex-align: stretch;
+  width: 30%;
   background-color: white;
   align-items: center;
   border-radius: 10px;
