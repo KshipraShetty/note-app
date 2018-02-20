@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { displaySaveAction, displayEditAction, switchAction } from '../redux/actions';
+import { displaySaveAction, switchAction } from '../redux/actions';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import NoteTitle from '../noteTitle/noteTitle';
@@ -21,8 +21,6 @@ class App extends React.Component {
       noteTitle: '',
       noteText: '',
       noteKey: 0,
-      display: 1,
-    //  savedNotes: [],
     };
   }
 
@@ -30,11 +28,11 @@ class App extends React.Component {
     const charLength = this.state.maxChar - charCount;
     this.setState({ charsLeft: charLength });
   }
-
-  changeDisplay = (dispKey) => {
-    // this.props.changeDisplay(dispKey);
-    this.setState({ display: dispKey });
-  }
+  //
+  // changeDisplay = (dispKey) => {
+  //   this.props.changeDisplay(dispKey);
+  //   // this.setState({ display: dispKey });
+  // }
 
   saveNote = () => {
     const currentKey = this.state.noteKey;
@@ -45,17 +43,14 @@ class App extends React.Component {
       noteText: this.state.noteText,
     };
     this.props.saveNote(newSavedNotes);
-    // this.props.changeDisplay(0);
-    this.setState(
-      {
-        noteTitle: '',
-        noteText: '',
-        charsLeft: this.state.maxChar,
-        display: 0,
-        noteKey: newSavedNotes.length + 1,
-      },
-      this.changeDisplay(this.state.display),
-    );
+    this.props.changeDisplay(0);
+    this.setState({
+      noteTitle: '',
+      noteText: '',
+      charsLeft: this.state.maxChar,
+      noteKey: newSavedNotes.length + 1,
+    });
+    // this.changeDisplay(this.state.display),
   }
   saveText = (text) => {
     this.setState({ noteText: text });
@@ -67,17 +62,17 @@ class App extends React.Component {
 
   editNote = (noteKey) => {
     const noteData = this.props.savedNotes[noteKey];
-    // this.props.changeDisplay(1);
+    this.props.changeDisplay(1);
     this.setState({
       noteText: noteData.noteText,
       noteTitle: noteData.noteTitle,
       noteKey: noteData.noteKey,
-    }, this.changeDisplay(1));
+    });
   }
 
 
   render() {
-    if (this.state.display) {
+    if (this.props.display) {
       return (
         <div className="App">
           <Header
@@ -136,10 +131,12 @@ class App extends React.Component {
         <button
           className="CreateNoteButton"
           onClick={() => {
-            // this.props.changeDisplay(1);
-          this.setState({
-            display: 1,
-          });
+            console.log(this.props.display);
+             this.props.changeDisplay(1);
+
+          // this.setState({
+          //   display: 1,
+          // });
         }}
         >
         Create Another Note
@@ -168,13 +165,13 @@ App.defaultProps = {
 };
 const mapStateToProps = state => ({
   savedNotes: state.savedNotes,
-  // display: state.display,
+  display: state.display,
 });
 
 const mapDispatchToProps = dispatch => ({
   saveNote: noteData => dispatch(displaySaveAction(noteData)),
-  editNote: () => dispatch(displayEditAction()),
-//  changeDisplay: display => dispatch(switchAction(display)),
+  editNote: () => dispatch(displaySaveAction()),
+  changeDisplay: display => dispatch(switchAction(display)),
 
 });
 

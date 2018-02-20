@@ -3,12 +3,7 @@ export const displaySaveAction = note => ({
   payload: note,
 });
 
-export const displayEditAction = note => ({
-  type: 'EDIT',
-  payload: note,
-});
-
-export const switchAction = page => ({
+export const switchAction = display => ({
   type: 'SWITCH',
-  payload: page,
+  payload: display,
 });
