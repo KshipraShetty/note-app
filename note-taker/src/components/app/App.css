@@ -1,0 +1,28 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: rgb(233, 233, 239);
+}
+.Page2 {
+  display: flex;
+  flex-direction: row;
+}
+.CreateNoteButton {
+  justify-content: space-between;
+  flex-grow: 1;
+  height: 5%;
+  width: 5%;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 8%;
+}
+.SyncButton {
+  justify-content: space-between;
+  height: 5%;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 8%;
+  flex-grow: 1;
+}
